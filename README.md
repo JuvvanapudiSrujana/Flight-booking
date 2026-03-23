@@ -1,64 +1,62 @@
-✈️ AeroBook – Flight Ticket Booking Website
+✈️ AeroBook – Flight Ticket Booking Web App
 
-A modern and responsive Flight Ticket Booking Website built using HTML, CSS, and JavaScript.
-This project demonstrates a complete booking workflow with Login → Flight Selection → Booking Confirmation.
+This is a simple web-based application that allows users to login, book flight tickets, and view booking confirmation.
 
-🌟 Features
-🔐 User Login System (stored using localStorage)
-✈️ Flight Booking Interface
-📅 Travel Date & Passenger Selection
-💺 Multiple Flight Options (IndiGo, Air India, SpiceJet)
-🎟️ Booking Confirmation with Ticket ID
-💾 Data stored using localStorage (No Backend)
-🎨 Modern UI with glassmorphism and gradients
-📱 Responsive Design
-🖥️ Screenshots
-🔑 Login Page
+📌 Project Description
 
-✈️ Booking Page
+The application allows users to enter their details, select travel information, and book a flight ticket.
+All data is stored using localStorage (no backend required).
 
-✅ Confirmation Page
+This project is built using:
 
-🚀 Project Workflow
-Login Page → Booking Page → Confirmation Page
-User logs in
-Enters travel details
-Selects a flight
-Books ticket
-Views confirmation
-🛠️ Technologies Used
-HTML5
-CSS3 (Glass UI, Gradients, Animations)
-JavaScript (localStorage, DOM manipulation)
+HTML
+CSS
+JavaScript
 📁 Project Structure
-flight-booking/
+flight-booking/ 
+│ 
+├── login.html 
+├── booking.html 
+├── confirmation.html 
+├── style.css 
+├── script.js 
 │
-├── login.html
-├── booking.html
-├── confirmation.html
-├── style.css
-├── script.js
-│
-└── assets/
-    ├── login.png
-    ├── booking.png
-    └── confirmation.png
-⚙️ How to Run the Project
-Download or clone the repository
-Open the folder in browser or VS Code
-Run:
-Open login.html
-📌 Key Concepts Used
-Local Storage for data persistence
-Page navigation using JavaScript
-Responsive UI design
-Form validation
-Dynamic data display
-🎯 Future Improvements
-Add backend (Node.js / Database)
-Payment Integration 💳
-User authentication system 🔐
-Live flight API integration 🌐
+├── assets/ 
+│   ├── login.png 
+│   ├── booking.png 
+│   └── confirmation.png 
+│ 
+└── README.md
+🚀 How to Run the Project
+
+Clone the repository:
+
+git clone https://github.com/your-username/flight-booking.git
+
+Navigate to the project folder:
+
+cd flight-booking
+
+Run the application:
+
+Open login.html in your browser
+🌟 Features
+User-friendly login system
+Flight booking interface
+Travel details input (city, date, passengers)
+Multiple flight options
+Booking confirmation with ticket ID
+Data stored using localStorage
+Clean and modern UI design
+🎯 Workflow
+
+Login Page → Booking Page → Confirmation Page
+
+🛠️ Technologies Used
+HTML
+CSS
+JavaScript
+localStorage
 👩‍💻 Author
 
 Developed by Srujana
