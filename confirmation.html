@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Confirmed — FlyEasy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-bg">
+      <div
+        class="page-bg__img"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1526481280695-3c687fd643ed?auto=format&fit=crop&w=1920&q=80');
+        "
+      ></div>
+      <div class="page-bg__overlay"></div>
+    </div>
+
+    <header class="navbar">
+      <a href="booking.html" class="navbar__brand"><span>✈️</span> AeroBook</a>
+      <ul class="navbar__links">
+        <li><a href="login.html">Login</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="#" id="navLogout">Logout</a></li>
+      </ul>
+    </header>
+
+    <main class="main-wrap">
+      <div class="glass-card confirm-wrap">
+        <div class="success-icon" aria-hidden="true">
+          <i class="fas fa-check"></i>
+        </div>
+        <h1 class="confirm-title">Flight Ticket Booked Successfully ✈️</h1>
+
+        <div class="ticket-details">
+          <dl>
+            <dt>Passenger</dt>
+            <dd id="outName">—</dd>
+            <dt>Route</dt>
+            <dd id="outRoute">—</dd>
+            <dt>Travel date</dt>
+            <dd id="outDate">—</dd>
+            <dt>Passengers</dt>
+            <dd id="outPax">—</dd>
+            <dt>Airline &amp; time</dt>
+            <dd id="outFlight">—</dd>
+            <dt>Ticket ID</dt>
+            <dd class="ticket-id" id="outTicket">—</dd>
+          </dl>
+        </div>
+
+        <div class="btn-row">
+          <a href="booking.html" class="btn btn-primary" id="btnAnother">Book Another Ticket</a>
+          <button type="button" class="btn btn-outline" id="btnLogout">Logout</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+      (function () {
+        if (!FlyEasy.requireLogin()) return;
+
+        var booking = FlyEasy.getBooking();
+        if (!booking || !booking.ticketId) {
+          window.location.href = "booking.html";
+          return;
+        }
+
+        function formatDate(iso) {
+          if (!iso) return "—";
+          var d = new Date(iso + "T12:00:00");
+          if (isNaN(d.getTime())) return iso;
+          return d.toLocaleDateString(undefined, {
+            weekday: "short",
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
+        }
+
+        document.getElementById("outName").textContent = booking.passengerName || "—";
+        document.getElementById("outRoute").textContent =
+          (booking.from || "—") + " → " + (booking.to || "—");
+        document.getElementById("outDate").textContent = formatDate(booking.date);
+        document.getElementById("outPax").textContent = String(booking.passengers ?? "—");
+        document.getElementById("outFlight").textContent =
+          (booking.airline || "—") +
+          " · " +
+          (booking.departure || "—") +
+          " – " +
+          (booking.arrival || "—") +
+          " · ₹" +
+          (booking.pricePerPerson || 0) +
+          " / person";
+        document.getElementById("outTicket").textContent = booking.ticketId;
+
+        document.getElementById("navLogout").addEventListener("click", function (e) {
+          e.preventDefault();
+          FlyEasy.logout();
+        });
+
+        document.getElementById("btnLogout").addEventListener("click", function () {
+          FlyEasy.logout();
+        });
+
+        document.getElementById("btnAnother").addEventListener("click", function (e) {
+          FlyEasy.clearBooking();
+        });
+      })();
+    </script>
+  </body>
+</html>

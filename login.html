@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — FlyEasy</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-bg">
+      <div
+        class="page-bg__img"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1920&q=80');
+        "
+      ></div>
+      <div class="page-bg__overlay"></div>
+    </div>
+
+    <header class="navbar">
+      <a href="login.html" class="navbar__brand"><span>✈️</span> AeroBook</a>
+      <ul class="navbar__links">
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="#" id="navLogout">Logout</a></li>
+      </ul>
+    </header>
+
+    <main class="main-wrap">
+      <div class="glass-card login-card">
+        <h1>Welcome back</h1>
+        <p class="page-sub">Sign in to book your next flight</p>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="name">Full name</label>
+            <div class="input-wrap">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                autocomplete="name"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrap">
+              <i class="fas fa-lock"></i>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+          </div>
+          <p class="error-msg" id="loginError" role="alert"></p>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+      (function () {
+        var err = document.getElementById("loginError");
+        var form = document.getElementById("loginForm");
+
+        document.getElementById("navLogout").addEventListener("click", function (e) {
+          e.preventDefault();
+          if (typeof FlyEasy !== "undefined") FlyEasy.logout();
+          else window.location.href = "login.html";
+        });
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          FlyEasy.hideError(err);
+
+          var name = document.getElementById("name").value.trim();
+          var email = document.getElementById("email").value.trim();
+          var password = document.getElementById("password").value;
+
+          if (!name) {
+            FlyEasy.showError(err, "Please enter your name.");
+            return;
+          }
+          if (!FlyEasy.validateEmail(email)) {
+            FlyEasy.showError(err, "Please enter a valid email address.");
+            return;
+          }
+          if (!FlyEasy.validatePassword(password)) {
+            FlyEasy.showError(err, "Password must be at least 6 characters.");
+            return;
+          }
+
+          FlyEasy.setUser({ name: name, email: email, password: password });
+          document.body.style.opacity = "0";
+          document.body.style.transition = "opacity 0.35s ease";
+          setTimeout(function () {
+            window.location.href = "booking.html";
+          }, 320);
+        });
+      })();
+    </script>
+  </body>
+</html>

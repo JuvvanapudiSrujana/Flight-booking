@@ -1,0 +1,615 @@
+/* ============================================
+   FlyEasy — Flight Ticket Booking (Global Styles)
+   ============================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary: #007bff;
+  --primary-dark: #0056b3;
+  --secondary: #00c6ff;
+  --accent: #ffd700;
+  --accent-hover: #ffed4a;
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.75);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  animation: pageIn 0.5s ease-out;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ----- Full-screen background + overlay ----- */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0d2137 100%);
+}
+
+.page-bg__img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.page-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(0, 15, 35, 0.88) 0%,
+    rgba(0, 50, 90, 0.72) 45%,
+    rgba(0, 30, 60, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* ----- Navbar ----- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 4%;
+  background: rgba(10, 25, 47, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: background var(--transition);
+}
+
+.navbar:hover {
+  background: rgba(10, 25, 47, 0.78);
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  transition: transform var(--transition), color var(--transition);
+}
+
+.navbar__brand:hover {
+  color: var(--accent);
+  transform: scale(1.02);
+}
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.navbar__links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color var(--transition), text-shadow var(--transition);
+}
+
+.navbar__links a:hover,
+.navbar__links a.active {
+  color: var(--accent);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.35);
+}
+
+/* ----- Glass card ----- */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+/* ----- Main layout ----- */
+.main-wrap {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.main-wrap--booking {
+  justify-content: flex-start;
+  padding-top: 2.5rem;
+}
+
+/* ----- Typography ----- */
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  background: linear-gradient(90deg, #fff, var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ----- Form elements ----- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.45rem;
+  color: var(--text-muted);
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--secondary);
+  font-size: 0.95rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input-wrap input,
+.input-wrap select {
+  width: 100%;
+  padding: 0.85rem 1rem 0.85rem 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input-wrap input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.input-wrap input:focus,
+.input-wrap select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.input-wrap select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2300C6FF' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.input-wrap select option {
+  /* Windows native dropdown menus can ignore the control background.
+     Force readable option text. */
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.input-wrap input[type="date"],
+.input-wrap input[type="number"] {
+  color-scheme: dark;
+}
+
+.input-wrap input[type="number"] {
+  padding-left: 2.75rem;
+}
+
+.flight-card__times .airport-from,
+.flight-card__times .airport-to {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+  letter-spacing: 0.04em;
+}
+
+.input-wrap--date i {
+  top: 50%;
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition),
+    background var(--transition);
+}
+
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #fff;
+  box-shadow: 0 4px 24px rgba(0, 123, 255, 0.45);
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 32px rgba(0, 198, 255, 0.55), 0 0 40px rgba(0, 123, 255, 0.35);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #f0c419 100%);
+  color: #1a1a1a;
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+}
+
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255, 215, 0, 0.5);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: var(--text);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.btn-row .btn {
+  width: auto;
+  min-width: 180px;
+}
+
+/* ----- Error message ----- */
+.error-msg {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.error-msg.show {
+  display: block;
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+/* ----- Login card ----- */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-card h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/* ----- Booking ----- */
+.booking-header {
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 2rem;
+}
+
+.booking-form-card {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 2.5rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--glass-border);
+  color: var(--secondary);
+}
+
+/* ----- Flight cards ----- */
+.flights-section {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.flights-section .section-title {
+  text-align: center;
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+.flight-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.flight-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.flight-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.flight-card__img {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.flight-card__logo {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: #fff;
+  object-fit: contain;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.flight-card__body {
+  padding: 1.25rem;
+}
+
+.flight-card__airline {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.flight-card__times {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.flight-card__times span strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.flight-card__arrow {
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.flight-card__price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.flight-card .btn-accent {
+  width: 100%;
+}
+
+/* ----- Confirmation ----- */
+.confirm-wrap {
+  text-align: center;
+  max-width: 520px;
+}
+
+.success-icon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 198, 255, 0.3), rgba(0, 123, 255, 0.4));
+  border: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.35);
+}
+
+.success-icon i {
+  font-size: 3rem;
+  color: var(--accent);
+  animation: tickDraw 0.5s ease 0.35s both;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes tickDraw {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.confirm-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text);
+}
+
+.ticket-details {
+  text-align: left;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--glass-border);
+}
+
+.ticket-details dl {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.ticket-details dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.ticket-details dd {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.ticket-id {
+  color: var(--accent);
+  font-family: "Poppins", monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar__links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .glass-card {
+    padding: 1.5rem;
+  }
+
+  .btn-row .btn {
+    width: 100%;
+    min-width: unset;
+  }
+}

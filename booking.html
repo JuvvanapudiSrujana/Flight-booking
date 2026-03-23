@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Flight — AeroBook</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-bg">
+      <div
+        class="page-bg__img"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1474302772737-fa34fce2213d?auto=format&fit=crop&w=1920&q=80');
+        "
+      ></div>
+      <div class="page-bg__overlay"></div>
+    </div>
+
+    <header class="navbar">
+      <a href="booking.html" class="navbar__brand"><span>✈️</span> AeroBook</a>
+      <ul class="navbar__links">
+        <li><a href="login.html">Login</a></li>
+        <li><a href="booking.html" class="active">Booking</a></li>
+        <li><a href="#" id="navLogout">Logout</a></li>
+      </ul>
+    </header>
+
+    <main class="main-wrap main-wrap--booking">
+      <div class="booking-header">
+        <h1 class="page-title">Plan your journey</h1>
+        <p class="page-sub">Search flights and pick the best fare for you</p>
+      </div>
+
+      <section class="glass-card booking-form-card">
+        <h2 class="section-title"><i class="fas fa-search"></i> Trip details</h2>
+        <form id="bookingForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="passengerName">Passenger name</label>
+              <div class="input-wrap">
+                <i class="fas fa-user"></i>
+                <input type="text" id="passengerName" name="passengerName" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fromCity">From</label>
+              <div class="input-wrap">
+                <i class="fas fa-plane-departure"></i>
+                <select id="fromCity" name="fromCity" required>
+                  <option value="">Select city</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Kolkata">Kolkata</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="toCity">To</label>
+              <div class="input-wrap">
+                <i class="fas fa-plane-arrival"></i>
+                <select id="toCity" name="toCity" required>
+                  <option value="">Select city</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Bangalore">Bangalore</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Kolkata">Kolkata</option>
+                  <option value="Hyderabad">Hyderabad</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="travelDate">Travel date</label>
+              <div class="input-wrap input-wrap--date">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="travelDate" name="travelDate" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="passengers">Passengers</label>
+              <div class="input-wrap">
+                <i class="fas fa-users"></i>
+                <input
+                  type="number"
+                  id="passengers"
+                  name="passengers"
+                  min="1"
+                  max="9"
+                  value="1"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+          <p class="error-msg" id="bookingError" role="alert"></p>
+        </form>
+      </section>
+
+      <section class="flights-section">
+        <h2 class="section-title">Available flights</h2>
+        <div class="flight-cards">
+          <article class="flight-card" data-flight-id="indigo">
+            <div
+              class="flight-card__img"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=600&q=80');
+              "
+            >
+              <img
+                class="flight-card__logo"
+                src="https://logo.clearbit.com/goindigo.in"
+                alt="IndiGo"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="flight-card__body">
+              <h3 class="flight-card__airline">IndiGo</h3>
+              <div class="flight-card__times">
+                <span
+                  ><strong>06:30</strong>
+                  <span class="airport-from">DEL</span></span
+                >
+                <span class="flight-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                <span
+                  ><strong>08:45</strong>
+                  <span class="airport-to">BOM</span></span
+                >
+              </div>
+              <p class="flight-card__price">₹3,000 <small style="font-weight: 400; opacity: 0.8">/ person</small></p>
+              <button type="button" class="btn btn-accent book-now-btn" data-airline="IndiGo" data-dep="06:30" data-arr="08:45" data-price="3000">
+                Book Now
+              </button>
+            </div>
+          </article>
+
+          <article class="flight-card" data-flight-id="airindia">
+            <div
+              class="flight-card__img"
+              style="
+                background-image: url('https://images.unsplash.com/photo-1529074963764-98f45c47344b?auto=format&fit=crop&w=600&q=80');
+              "
+            >
+              <img
+                class="flight-card__logo"
+                src="https://logo.clearbit.com/airindia.in"
+                alt="Air India"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="flight-card__body">
+              <h3 class="flight-card__airline">Air India</h3>
+              <div class="flight-card__times">
+                <span
+                  ><strong>09:15</strong>
+                  <span class="airport-from">DEL</span></span
+                >
+                <span class="flight-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                <span
+                  ><strong>11:50</strong>
+                  <span class="airport-to">BOM</span></span
+                >
+              </div>
+              <p class="flight-card__price">₹4,500 <small style="font-weight: 400; opacity: 0.8">/ person</small></p>
+              <button type="button" class="btn btn-accent book-now-btn" data-airline="Air India" data-dep="09:15" data-arr="11:50" data-price="4500">
+                Book Now
+              </button>
+            </div>
+          </article>
+
+          <article class="flight-card" data-flight-id="spicejet">
+            <div
+              class="flight-card__img"
+              style="
+                background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL2tzWxnYp1o-taIvIgwnw3mnw8SX5o5g1AQ&s');
+              "
+            >
+              <img
+                class="flight-card__logo"
+                src="https://logo.clearbit.com/spicejet.com"
+                alt="SpiceJet"
+                onerror="this.style.display='none'"
+              />
+            </div>
+            <div class="flight-card__body">
+              <h3 class="flight-card__airline">SpiceJet</h3>
+              <div class="flight-card__times">
+                <span
+                  ><strong>14:00</strong>
+                  <span class="airport-from">DEL</span></span
+                >
+                <span class="flight-card__arrow"><i class="fas fa-arrow-right"></i></span>
+                <span
+                  ><strong>16:20</strong>
+                  <span class="airport-to">BOM</span></span
+                >
+              </div>
+              <p class="flight-card__price">₹3,800 <small style="font-weight: 400; opacity: 0.8">/ person</small></p>
+              <button type="button" class="btn btn-accent book-now-btn" data-airline="SpiceJet" data-dep="14:00" data-arr="16:20" data-price="3800">
+                Book Now
+              </button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+      (function () {
+        if (!FlyEasy.requireLogin()) return;
+
+        var user = FlyEasy.getUser();
+        var passengerInput = document.getElementById("passengerName");
+        if (user && user.name) passengerInput.value = user.name;
+
+        var dateInput = document.getElementById("travelDate");
+        var today = new Date();
+        var yyyy = today.getFullYear();
+        var mm = String(today.getMonth() + 1).padStart(2, "0");
+        var dd = String(today.getDate()).padStart(2, "0");
+        dateInput.min = yyyy + "-" + mm + "-" + dd;
+
+        var cityCode = {
+          Delhi: "DEL",
+          Mumbai: "BOM",
+          Bangalore: "BLR",
+          Chennai: "MAA",
+          Kolkata: "CCU",
+          Hyderabad: "HYD",
+        };
+        function syncAirportLabels() {
+          var from = document.getElementById("fromCity").value;
+          var to = document.getElementById("toCity").value;
+          var fc = from ? cityCode[from] || from.substring(0, 3).toUpperCase() : "DEL";
+          var tc = to ? cityCode[to] || to.substring(0, 3).toUpperCase() : "BOM";
+          document.querySelectorAll(".airport-from").forEach(function (el) {
+            el.textContent = fc;
+          });
+          document.querySelectorAll(".airport-to").forEach(function (el) {
+            el.textContent = tc;
+          });
+        }
+        document.getElementById("fromCity").addEventListener("change", syncAirportLabels);
+        document.getElementById("toCity").addEventListener("change", syncAirportLabels);
+        syncAirportLabels();
+
+        document.getElementById("navLogout").addEventListener("click", function (e) {
+          e.preventDefault();
+          FlyEasy.logout();
+        });
+
+        var err = document.getElementById("bookingError");
+
+        function validateForm() {
+          FlyEasy.hideError(err);
+          var name = passengerInput.value.trim();
+          var from = document.getElementById("fromCity").value;
+          var to = document.getElementById("toCity").value;
+          var dateVal = dateInput.value;
+          var pax = parseInt(document.getElementById("passengers").value, 10);
+
+          if (!name) {
+            FlyEasy.showError(err, "Please enter passenger name.");
+            return false;
+          }
+          if (!from || !to) {
+            FlyEasy.showError(err, "Please select both origin and destination.");
+            return false;
+          }
+          if (from === to) {
+            FlyEasy.showError(err, "Origin and destination must be different.");
+            return false;
+          }
+          if (!dateVal) {
+            FlyEasy.showError(err, "Please choose a travel date.");
+            return false;
+          }
+          var chosen = new Date(dateVal + "T12:00:00");
+          var startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+          if (chosen < startOfToday) {
+            FlyEasy.showError(err, "Travel date cannot be in the past.");
+            return false;
+          }
+          if (!pax || pax < 1 || pax > 9) {
+            FlyEasy.showError(err, "Passengers must be between 1 and 9.");
+            return false;
+          }
+          return true;
+        }
+
+        document.querySelectorAll(".book-now-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            if (!validateForm()) return;
+
+            var from = document.getElementById("fromCity").value;
+            var to = document.getElementById("toCity").value;
+            var dateVal = dateInput.value;
+            var pax = parseInt(document.getElementById("passengers").value, 10);
+            var passengerName = passengerInput.value.trim();
+
+            var booking = {
+              passengerName: passengerName,
+              from: from,
+              to: to,
+              date: dateVal,
+              passengers: pax,
+              airline: btn.getAttribute("data-airline"),
+              departure: btn.getAttribute("data-dep"),
+              arrival: btn.getAttribute("data-arr"),
+              pricePerPerson: parseInt(btn.getAttribute("data-price"), 10),
+              ticketId: FlyEasy.generateTicketId(),
+              bookedAt: new Date().toISOString(),
+            };
+
+            FlyEasy.setBooking(booking);
+            document.body.style.opacity = "0";
+            document.body.style.transition = "opacity 0.35s ease";
+            setTimeout(function () {
+              window.location.href = "confirmation.html";
+            }, 320);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
